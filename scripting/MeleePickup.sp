@@ -39,7 +39,10 @@ public Action Hook_WeaponCanUse(int client, int weapon)
   char className[64];
   GetEntityClassname(weapon, className, sizeof(className));
 
-  if (StrEqual(className, "weapon_melee") && !HasWeapon(client, "weapon_melee"))
+  if (
+      StrEqual(className, "weapon_melee") && !HasWeapon(client, "weapon_melee") || 
+      StrEqual(className, "weapon_knife") && !HasWeapon(client, "weapon_knife")
+    )
   {
     EquipPlayerWeapon(client, weapon);
     return Plugin_Changed;
